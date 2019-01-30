@@ -1,0 +1,24 @@
+{
+  "name": "cartsimulator",
+  "version": "1.0.0",
+  "author": "Laura Robertson",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "bootstrap": "^4.2.1",
+    "express": "4.16.4",
+    "mysql": "^2.16.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-react": "1.0.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-watch": "^2.0.8"
+  }
+}
