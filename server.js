@@ -1,7 +1,12 @@
 const bodyParser = require('body-parser');
 const express = require('express');
+const Sequelize = require('sequelize');
 const app = express();
 const port = 8000;
+
+const sequelize = new Sequelize('customers', 'root', 'test', {
+  dialect: 'mysql'
+})
 
 app.use(express.static('./public'))
 app.use(bodyParser.json());

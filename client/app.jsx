@@ -82,11 +82,11 @@ class F2 extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      address1 = "",
-      address2 = "",
-      city = "",
-      st = "",
-      zipcode = ""
+      address1: "",
+      address2: "",
+      city: "",
+      stateAddr: "",
+      zipcode: ""
     }
   }
 
@@ -123,7 +123,7 @@ class F2 extends React.Component {
         </div>
         <div>
           <label>State:</label>
-          <input type="text" id="state" placeholder="State" value={this.state.st} onChange={this.dataChange.bind(this)}></input>
+          <input type="text" id="stateAddr" placeholder="State" value={this.state.stateAddr} onChange={this.dataChange.bind(this)}></input>
         </div>
         <div>
           <label>Zipcode:</label>
