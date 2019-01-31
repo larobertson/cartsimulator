@@ -20,6 +20,7 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
   //console.log(req)
   console.log('here is the body', req.body)
+  res.send('success')
 })
 
 app.listen(port, () => {

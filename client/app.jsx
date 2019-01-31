@@ -164,6 +164,6 @@ function F3 (props) {
 }
 
 ReactDOM.render(
-  <F2 />,
+  <F1 />,
   document.getElementById('hello')
 );
