@@ -29,12 +29,30 @@ function Checkout (props) {
 class F1 extends React.Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      name: "",
+      email: "",
+      password: ""
+    }
   }
 
-  sendForm () {
+  dataChange(val){
+    this.setState({
+      [val.target.name]: val.target.value
+    })
+  }
+
+  sendForm (event) {
     event.preventDefault();
     console.log('this is the form speaking')
-    axios.get()
+    axios.post('/', this.state)
+    .then(function (response) {
+      console.log('what you want me to say', response);
+    })
+    .catch(function (err) {
+      console.log('this is an error:', err)
+    })
   }
 
   render() {
@@ -42,18 +60,18 @@ class F1 extends React.Component {
       <form>
         <div>
           <label>Name:</label>
-          <input type="text" id="name" placeholder="name"></input>
+          <input type="text" name="name" placeholder="name" value={this.state.name} onChange={this.dataChange.bind(this)}></input>
         </div>
         <div>
           <label>Email:</label>
-          <input type="email" id="email" placeholder="Email"></input>
+          <input type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.dataChange.bind(this)}></input>
         </div>
         <div>
           <label>Password:</label>
-          <input type="password" id="password" placeholder="password"></input>
+          <input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.dataChange.bind(this)}></input>
         </div>
         <div>
-          <button type="button" onClick={this.sendForm}>Log In</button>
+          <button type="button" onClick={this.sendForm.bind(this)}>Log In</button>
         </div>
       </form>
     )
