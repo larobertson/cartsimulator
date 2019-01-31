@@ -39,7 +39,7 @@ class F1 extends React.Component {
 
   dataChange(val){
     this.setState({
-      [val.target.name]: val.target.value
+      [val.target.id]: val.target.value
     })
   }
 
@@ -47,10 +47,10 @@ class F1 extends React.Component {
     event.preventDefault();
     console.log('this is the form speaking')
     axios.post('/', this.state)
-    .then(function (response) {
+    .then((response) => {
       console.log('what you want me to say', response);
     })
-    .catch(function (err) {
+    .catch((err) => {
       console.log('this is an error:', err)
     })
   }
@@ -60,15 +60,15 @@ class F1 extends React.Component {
       <form>
         <div>
           <label>Name:</label>
-          <input type="text" name="name" placeholder="name" value={this.state.name} onChange={this.dataChange.bind(this)}></input>
+          <input type="text" id="name" placeholder="name" value={this.state.name} onChange={this.dataChange.bind(this)}></input>
         </div>
         <div>
           <label>Email:</label>
-          <input type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.dataChange.bind(this)}></input>
+          <input type="email" id="email" placeholder="Email" value={this.state.email} onChange={this.dataChange.bind(this)}></input>
         </div>
         <div>
           <label>Password:</label>
-          <input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.dataChange.bind(this)}></input>
+          <input type="password" id="password" placeholder="password" value={this.state.password} onChange={this.dataChange.bind(this)}></input>
         </div>
         <div>
           <button type="button" onClick={this.sendForm.bind(this)}>Log In</button>
@@ -78,34 +78,63 @@ class F1 extends React.Component {
  }
 }
 
-function F2 (props) {
-  return (
-    <form action="/" method="POST">
-      <div>
-        <label>Shipping Address:</label>
-        <input type="text" id="address1" placeholder="Street address"></input>
-      </div>
-      <div>
-        <label>Shipping Address Line 2:</label>
-        <input type="text" id="address2" placeholder="Apt, Suit, Etc."></input>
-      </div>
-      <div>
-        <label>City:</label>
-        <input type="text" id="city" placeholder="City"></input>
-      </div>
-      <div>
-        <label>State:</label>
-        <input type="text" id="state" placeholder="State"></input>
-      </div>
-      <div>
-        <label>Zipcode:</label>
-        <input type="number" id="zipcode" placeholder="Zipcode"></input>
-      </div>
-      <div>
-        <input type="submit" onClick={() => {alert('this is you')}}></input>
-      </div>
-    </form>
-  )
+class F2 extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      address1 = "",
+      address2 = "",
+      city = "",
+      st = "",
+      zipcode = ""
+    }
+  }
+
+  dataChange (val) {
+    this.setState({
+      [val.target.id]: val.target.value
+    })
+  }
+
+  sendForm (event) {
+    event.preventDefault();
+    axios.post('/', this.state)
+    .then((response) => {
+      console.log('this is F2\'s response', response)
+    })
+    .catch((err) => {
+      console.log('this is an error at F2', err)
+    })
+  }
+  render () {
+    return (
+      <form>
+        <div>
+          <label>Shipping Address:</label>
+          <input type="text" id="address1" placeholder="Street address" value={this.state.address1} onChange={this.dataChange.bind(this)}></input>
+        </div>
+        <div>
+          <label>Shipping Address Line 2:</label>
+          <input type="text" id="address2" placeholder="Apt, Suit, Etc." value={this.state.address2} onChange={this.dataChange.bind(this)}></input>
+        </div>
+        <div>
+          <label>City:</label>
+          <input type="text" id="city" placeholder="City" value={this.state.city} onChange={this.dataChange.bind(this)}></input>
+        </div>
+        <div>
+          <label>State:</label>
+          <input type="text" id="state" placeholder="State" value={this.state.st} onChange={this.dataChange.bind(this)}></input>
+        </div>
+        <div>
+          <label>Zipcode:</label>
+          <input type="number" id="zipcode" placeholder="Zipcode" value={this.state.zipcode} onChange={this.dataChange.bind(this)}></input>
+        </div>
+        <div>
+          <input type="submit" onClick={this.sendForm.bind(this)}></input>
+        </div>
+      </form>
+    )
+  }
 }
 
 function F3 (props) {
@@ -135,6 +164,6 @@ function F3 (props) {
 }
 
 ReactDOM.render(
-  <F1 />,
+  <F2 />,
   document.getElementById('hello')
 );
